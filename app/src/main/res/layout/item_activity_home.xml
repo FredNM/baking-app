@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="recipe"
+            type="com.frednm.baking_app.data.model.Recipe" />
+        <variable
+            name="viewmodel"
+            type="com.frednm.baking_app.features.home.HomeViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recipe_height_home_activity"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/cardElevation"
+        android:onClick="@{() -> viewmodel.userClicksOnItem(recipe)}">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+        <TextView
+            android:id="@+id/recipe_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+            android:text="@{recipe.getName()}" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

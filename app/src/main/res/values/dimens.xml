@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cornerSize">4dp</dimen>
+    <dimen name="cardElevation">8dp</dimen>
+    <dimen name="margin_small">2dp</dimen>
+
+    <dimen name="margin_medium">20dp</dimen>
+
+    <dimen name="recipe_height_detail_activity">100dp</dimen>
+    <dimen name="recipe_height_home_activity">150dp</dimen>
+    <dimen name="recipe_video_height_detail_activity">250dp</dimen>
+
+    <dimen name="padding">10dp</dimen>
+
+    <dimen name="size_medium">30dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">8dp</dimen>
+
+</resources>

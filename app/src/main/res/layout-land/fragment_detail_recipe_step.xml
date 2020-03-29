@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.detail.DetailRecipeStepFragment">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.frednm.baking_app.features.detail.DetailViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorSelector">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/step_video_iv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recipe_video_height_detail_activity"
+            app:controller_layout_id="@layout/playback_control"
+            handleVisibility="@{viewmodel.recipeStepIsSelected}"
+            handleVisibilityII="@{viewmodel.recipeStepContainsVideo}"/>
+
+        <ScrollView
+            android:id="@+id/scroll_view_detail_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:fillViewport="true" >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/ingredients_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    handleVisibility="@{viewmodel.ingredientIsSelected}"
+                    android:text="@{viewmodel.ingredientText}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"/>
+
+                <TextView
+                    android:id="@+id/step_description_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    handleVisibility="@{viewmodel.recipeStepIsSelected}"
+                    android:text="@{viewmodel.recipeStep.getDescription()}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>

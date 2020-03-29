@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="recipeStep"
+            type="com.frednm.baking_app.data.model.RecipeStep" />
+        <variable
+            name="viewmodel"
+            type="com.frednm.baking_app.features.detail.DetailViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recipe_height_detail_activity"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/cardElevation"
+        android:backgroundTint="@drawable/button_favorite_selector_color"
+        android:onClick="@{(view) -> viewmodel.userClicksOnStep(view, recipeStep)}">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+        <TextView
+            android:id="@+id/recipe_short_description_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:text="@{recipeStep.getShortDescription()}"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
