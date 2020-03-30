@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.5'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.5'
 
+    // See this https://stackoverflow.com/questions/56833657/preferencemanager-getdefaultsharedpreferences-deprecated-in-android-q/56911496
+    //SharedPreferences
+    implementation "androidx.preference:preference:1.1.0"
 }

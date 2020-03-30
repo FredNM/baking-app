@@ -1,8 +1,5 @@
 package com.frednm.baking_app;
 
-import android.content.Context;
-
-import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;

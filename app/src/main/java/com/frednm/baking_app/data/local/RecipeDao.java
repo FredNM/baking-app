@@ -10,7 +10,6 @@ import java.util.List;
 
 @Dao
 public abstract class RecipeDao extends BaseDao<Recipe> {
-    // TODO All the work
 
     // -- SELECT
     @Query("SELECT * FROM Recipe")

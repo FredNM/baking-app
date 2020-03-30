@@ -22,6 +22,7 @@ import javax.inject.Inject;
 
 public class DetailViewModel extends ViewModel {
 
+
     public interface Listeners { // implemented in DetailRecipeActivity
         void navigateToDetailRecipeStepActivity();
     }
@@ -36,6 +37,8 @@ public class DetailViewModel extends ViewModel {
     private GetRecipeUseCase getRecipeUseCase;
     private int recipeId;
     private Integer recipeStepId;
+
+    private String recipeName;
 
     private View previousView;
 
@@ -64,15 +67,41 @@ public class DetailViewModel extends ViewModel {
     public LiveData<RecipeStep> recipeStep = _recipeStep;
     private RecipeStep recipeStepData;
 
-    // --- CONSTRUCTOR
+    // --- CONSTRUCTORS
     @Inject
     public DetailViewModel(GetRecipeUseCase getRecipeUseCase) {
         this.getRecipeUseCase = getRecipeUseCase;
     }
+    public DetailViewModel() {} // Used in RecipeWidgetProvider
 
-    // --- GETTER
-    public String getIngredientText() {  // Needed in the DetailRecipeStepFragment, for configuration of WidgetService
+    // --- GETTERS
+    public String getIngredientText() {
         return ingredientText;
+    }
+    public int getRecipeId() {        return recipeId; }
+    public String getRecipeName() {        return recipeName; }
+
+    // --- SETTER
+    public void setIngredientText(String ingredientText) { // Used in DetailRecipeFragment
+        this.ingredientText = ingredientText;
+    }
+    // --- UNUSUAL SETTER
+    public void forceSetIngredientText() { // Used in DetailRecipeFragment
+        this.ingredientText = textCreator.showIngredients(recipeIngredientsData);
+    }
+
+    // --- SETTERS  : TO HANDLE VIEW STATE IN RECIPEWIDGETPROVIDER
+    public void setIngredientIsSelected(boolean ingredientIsSelected) {
+        this.ingredientIsSelected = ingredientIsSelected;
+    }
+    public void setRecipeStepIsSelected(boolean recipeStepIsSelected) {
+        this.recipeStepIsSelected = recipeStepIsSelected;
+    }
+    public void setShowFABForth(boolean showFABForth) {
+        this.showFABForth = showFABForth;
+    }
+    public void setShowFABBack(boolean showFABBack) {
+        this.showFABBack = showFABBack;
     }
 
     // USER ACTIONS ON RECIPE FRAGMENT
@@ -80,7 +109,6 @@ public class DetailViewModel extends ViewModel {
         recipeId = id;
         getDetailRecipe();
     }
-
 
     public void userClicksOnIngredient(View view){
         ingredientIsSelected = true;
@@ -128,6 +156,7 @@ public class DetailViewModel extends ViewModel {
                 this.recipeStepsData.put(resource.getSteps().get(i).getId(),resource.getSteps().get(i));
             }
             this.recipeIngredientsData = resource.getIngredients();
+            this.recipeName = resource.getName();
             this._recipe.setValue(resource);
         }
     }

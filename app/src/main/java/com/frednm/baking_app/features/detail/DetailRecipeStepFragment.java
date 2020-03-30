@@ -1,7 +1,6 @@
 package com.frednm.baking_app.features.detail;
 
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import com.frednm.baking_app.data.model.RecipeStep;
 import com.frednm.baking_app.databinding.FragmentDetailRecipeStepBinding;
 import com.frednm.baking_app.features.detail.utils.ExoPlayerLoadControl;
-import com.frednm.baking_app.features.widget.UpdateIngredientService;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -27,7 +25,6 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,8 +66,6 @@ public class DetailRecipeStepFragment extends Fragment implements DetailViewMode
         binding.setLifecycleOwner(this);
 
         viewModel.implementedFragmentListener(this);
-        this.setUpWidgetServiceMethod();
-
         playerView = binding.stepVideoIv;
 
         return binding.getRoot();
@@ -176,14 +171,4 @@ public class DetailRecipeStepFragment extends Fragment implements DetailViewMode
         this.binding.setViewmodel(viewModel);
     }
 
-    private void setUpWidgetServiceMethod(){
-        String ingredientText = viewModel.getIngredientText();
-        this.executeWidgetServiceMethod(ingredientText);
-    }
-
-    private void executeWidgetServiceMethod(@NonNull String ingredientText) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add(ingredientText);
-        UpdateIngredientService.startBakingService(requireContext(),list);
-    }
 }
